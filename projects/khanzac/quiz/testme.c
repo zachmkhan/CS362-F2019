@@ -6,17 +6,33 @@
 char inputChar()
 {
     // TODO: rewrite this function
-    return ' ';
+    char c[33] = "abcdefghijklmnopqrstuvwxyz[({ })]";
+    int num = (rand() % (32 - 0 + 1)) + 0; 
+    return c[num];
 }
 
 char *inputString()
 {
     // TODO: rewrite this function
-    return "";
+    char s[6] = "";
+    char c[26] = "abcdefghijklmnopqrstuvwxyz";
+
+    s[0] = c[(rand() % (25 - 0 + 1)) + 0];
+    s[1] = c[(rand() % (25 - 0 + 1)) + 0];
+    s[2] = c[(rand() % (25 - 0 + 1)) + 0];
+    s[3] = c[(rand() % (25 - 0 + 1)) + 0];
+    s[4] = c[(rand() % (25 - 0 + 1)) + 0];
+    //s[5] = '\0';
+    return s;
 }
 
 void testme()
 {
+  //https://www.geeksforgeeks.org/how-to-measure-time-taken-by-a-program-in-c/
+  clock_t start, end;
+  double cpu_time_used;
+  start = clock();
+
   int tcCount = 0;
   char *s;
   char c;
@@ -42,6 +58,11 @@ void testme()
        && s[4] == 't' && s[5] == '\0'
        && state == 9)
     {
+      //https://www.geeksforgeeks.org/how-to-measure-time-taken-by-a-program-in-c/
+      end = clock();
+      cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+      printf("fun() took %f seconds to execute \n", cpu_time_used);
+
       printf("error ");
       exit(200);
     }
