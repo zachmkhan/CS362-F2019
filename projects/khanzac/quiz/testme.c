@@ -15,13 +15,13 @@ char *inputString()
 {
     // TODO: rewrite this function
     static char s[6] = "";
-    char c[26] = "abcdefghijklmnopqrstuvwxyz";
+    char c[26] = "esrt";
 
-    s[0] = c[(rand() % (25 - 0 + 1)) + 0];
-    s[1] = c[(rand() % (25 - 0 + 1)) + 0];
-    s[2] = c[(rand() % (25 - 0 + 1)) + 0];
-    s[3] = c[(rand() % (25 - 0 + 1)) + 0];
-    s[4] = c[(rand() % (25 - 0 + 1)) + 0];
+    s[0] = c[(rand() % (3 - 0 + 1)) + 0];
+    s[1] = c[(rand() % (3 - 0 + 1)) + 0];
+    s[2] = c[(rand() % (3 - 0 + 1)) + 0];
+    s[3] = c[(rand() % (3 - 0 + 1)) + 0];
+    s[4] = c[(rand() % (3 - 0 + 1)) + 0];
     //s[5] = '\0';
     return s;
 }
