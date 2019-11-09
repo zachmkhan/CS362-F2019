@@ -817,8 +817,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         {
             return -1;
         }
-
-        if ( (getCost(state->hand[currentPlayer][choice1]) + 3) > getCost(choice2) )
+	
+	//Bug
+        if ( (getCost(state->hand[currentPlayer][choice1]) + 4) > getCost(choice2) )
         {
             return -1;
         }
@@ -973,7 +974,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             }
 
             //draw 4
-            for (i = 0; i < 4; i++)
+	    //Bug. This will draw 5
+            for (i = 0; i < 5; i++)
             {
                 drawCard(currentPlayer, state);
             }
@@ -1068,8 +1070,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             state->playedCardCount++;
             tributeRevealedCards[1] = -1;
         }
-
-        for (i = 0; i <= 2; i ++) {
+	
+	//Bug. Should be less than 3
+        for (i = 0; i <= 3; i ++) {
             if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold) { //Treasure cards
                 state->coins += 2;
             }
@@ -1102,7 +1105,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         {
             if (i != handPos && i == state->hand[currentPlayer][choice1] && i != choice1)
             {
-                j++;
+		 //Bug.This will change the number of cards in the players hand
+                //j++;
             }
         }
         if (j < choice2)
