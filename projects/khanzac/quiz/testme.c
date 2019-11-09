@@ -14,7 +14,7 @@ char inputChar()
 char *inputString()
 {
     // TODO: rewrite this function
-    char s[6] = "";
+    static char s[6] = "";
     char c[26] = "abcdefghijklmnopqrstuvwxyz";
 
     s[0] = c[(rand() % (25 - 0 + 1)) + 0];
