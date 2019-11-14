@@ -911,7 +911,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
                         printf("Must gain an estate if there are any\n");
                     }
                     if (supplyCount(estate, state) > 0) {
-                        gainCard(estate, state, 0, currentPlayer);
+			 //Bug
+                        //gainCard(estate, state, 0, currentPlayer);
 
                         state->supplyCount[estate]--;//Decrement estates
                         if (supplyCount(estate, state) == 0) {
