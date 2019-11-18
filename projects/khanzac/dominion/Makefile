@@ -6,26 +6,29 @@ rngs.o: rngs.h rngs.c
 dominion.o: dominion.h dominion.c rngs.o
 	gcc -c dominion.c -g  $(CFLAGS)
 
-playdom: dominion.o playdom.c
-	gcc -o playdom playdom.c -g dominion.o rngs.o $(CFLAGS)
-#To run playdom you need to entere: ./playdom <any integer number> like ./playdom 10*/
-
-testDrawCard: testDrawCard.c dominion.o rngs.o
-	gcc  -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
-
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
-runtests: testDrawCard 
-	./testDrawCard &> unittestresult.out
-	gcov dominion.c >> unittestresult.out
-	cat dominion.c.gcov >> unittestresult.out
+test: dominion.o interface.o randomtestcard1.c
+	gcc -o test randomtestcard1.c -g dominion.o rngs.o interface.o $(CFLAGS)
 
+test2: dominion.o randomtestcard2.c
+	gcc -o test2 randomtestcard2.c -g dominion.o rngs.o $(CFLAGS)
 
-player: player.c interface.o
-	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
+test3: dominion.o randomtestcard3.c
+	gcc -o test3 randomtestcard3.c -g dominion.o rngs.o $(CFLAGS)
 
-all: playdom player 
+randomtestresults: test test2 test3
+	#Adapteed from Josh Hash on Piazza
+	make test
+	make test2
+	make test3
+	clear
+	./test >> randomtestresults.out
+	./test2 >> randomtestresults.out
+	./test3 >> randomtestresults.out
+	gcov -b -f dominion.c >> randomtestresults.out
+	cat dominion.c.gcov >> unittestresults.out
 
 clean:
-	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+	rm -f *.o test3 test3.exe example.exe example test.exe test test2.exe test2 player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
